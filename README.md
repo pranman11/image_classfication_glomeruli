@@ -11,7 +11,7 @@ Below is a summary of the trained models and their accuracy on a small test data
 |   Simple CNN model    | 96%               |
 |   Frozen VGG16 model  | 98%               |
 
-### Dataset
+## Dataset
 
 The dateset collected given from the Computational Microscopy Imaging Lab at the University of Florida is distributed as follows:
 
@@ -32,11 +32,11 @@ For the purposes of training, validation and evaluation (testing) I have divided
 
 To split the given data into above percentage by creating separate directories I have written a script that can be run as below:
 
-'''
+```
 python create_data_split.py
-'''
+```
 
-Note: Update the variables 'data_dir' and 'split_dir' in the script to the path to the original data directory and new directory respectively.
+Note: Update the variables `data_dir` and `split_dir` in the script to the path to the original data directory and new directory respectively.
 
 
 
