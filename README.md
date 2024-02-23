@@ -1,6 +1,6 @@
 # Binary Classification of sclerotic and non-sclerotic glomeruli
 
-This repository consists of research around and code for training and evaluation of various Neural Network models for 'Binary Classification of sclerotic and non-sclerotic glomeruli' using microscopic images.
+This repository consists of research and code for training and evaluation of various Neural Network models for 'Binary Classification of sclerotic and non-sclerotic glomeruli' using microscopic images.
 For simplicity 'class_0' is non-sclerotic and 'class_1' is sclerotic glomeruli.
 
 Below is a summary of the trained models and their accuracy on a small test dataset.
