@@ -38,11 +38,17 @@ python scripts\create_data_split.py
 
 Note: Update the variables `data_dir` and `split_dir` in the script to the path to the original data directory and new directory respectively.
 
-
 ## Data Preprocessing
 
 ### Resizing and White Padding
 The given image samples are of various aspect ratios and need to be standardized for the training of our neural networks. Initially, I tested my logistic regression model and Simple CNN model with simply resizing the images to 256x256 dimensions and trained the models. This resulted in low test accuracy (less than 90% for the CNN model). After having a closer look at the image samples, I realized that resizing directly might result in loss of information that would be essential to classify images. Therefore, I chose to first create white padded images to create square shaped images and then resize the images to 256x256. This resulted in significant improvement of the model's accuracy on the test set.
+
+To run white padding on the already split dataset (obtained by running the script above), run the given script as below:
+
+```
+python scripts\create_white_padded_data.py
+```
+Note: Update the variables `split_data_dir` and `padded_data_dir` in the script to the path to the original data directory and new directory respectively.
 
 ### Normalization
 I made use of [Normalization layers](https://www.tensorflow.org/api_docs/python/tf/keras/layers/Normalization) by Tensorflow Keras API to normalize the given data using the mean and standard deviation. 
