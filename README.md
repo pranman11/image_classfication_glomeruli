@@ -41,7 +41,7 @@ Note: Update the variables `data_dir` and `split_dir` in the script to the path 
 ## Data Preprocessing
 
 ### Resizing and White Padding
-The given image samples are of various aspect ratios and need to be standardized for the training of our neural networks. Initially, I tested my logistic regression model and Simple CNN model with simply resizing the images to 256x256 dimensions and trained the models. This resulted in low test accuracy (less than 90% for the CNN model). After having a closer look at the image samples, I realized that resizing directly might result in loss of information that would be essential to classify images. Therefore, I chose to first create white padded images to create square shaped images and then resize the images to 256x256. This resulted in significant improvement of the model's accuracy on the test set.
+The given image samples are of various aspect ratios and need to be standardized for the training of our neural networks. Initially, I tested my logistic regression model and Simple CNN model with simply resizing the images to 256x256 dimensions and trained the models. This resulted in low test accuracy (less than 90% for the CNN model). After having a closer look at the image samples, I realized that resizing directly might result in loss of information that would be essential to classify images. Therefore, I chose to first create white padded images to create square shaped images and then resize the images to 256x256 (for large pretrained models I user 224x224). This resulted in significant improvement of the model's accuracy on the test set.
 
 To run white padding on the already split dataset (obtained by running the script above), run the given script as below:
 
@@ -66,27 +66,47 @@ Images after preprocessing:
 
 ## Models
 
-### Logistic Regression
+#### Logistic Regression
 I decided to first train and test on a simple single layer neural network with a sigmoid activation, which is basically a Logisitc Regression model. With 20 epochs of training, the model achieved an accuracy of 87% on the test dataset. From the loss graph we can observe that the model did not require many epochs to converge.
 
 <img src="https://github.com/pranman11/image_classfication_glomeruli/assets/17320182/2c56932d-a946-42f0-abe7-6268b96b18bc" width="400" height="300"/>
 <img src="https://github.com/pranman11/image_classfication_glomeruli/assets/17320182/a2c77d35-bd1c-4369-a8f5-e6179d144228" width="400" height="300"/>
 
-### Simple CNN Classifier
-As the performance of the logistic regression model was not upto the mark, I decided to use Convolutional layers in the neural network model. I chose a general image classifier model provided in the Tensorflow documentaion for [image classification](https://www.tensorflow.org/tutorials/images/classification) to begin with. The model consisted of 3 convolutional layers, each followed by a Max Pooling layer and 2 fully connected layers at the end.
+#### Simple CNN Classifier
+As the performance of the logistic regression model was not upto the mark, I decided to use Convolutional layers in the neural network model. I chose a general image classifier model provided in the Tensorflow documentaion for [image classification](https://www.tensorflow.org/tutorials/images/classification) to begin with. The model consisted of 3 convolutional layers, each followed by a Max Pooling layer and 2 fully connected layers at the end. After training for 25 epochs, the model converged as follows:
 
 <img src="https://github.com/pranman11/image_classfication_glomeruli/assets/17320182/b51f2c88-8819-4c6b-bc31-dca9a4243124" width="400" height="300"/>
 <img src="https://github.com/pranman11/image_classfication_glomeruli/assets/17320182/81f853b6-9c22-4cf9-9dd9-5789b6d9c940" width="400" height="300"/>
 
-I further evaluated the model on 577 image samples set aside for testing and also computed the below confusion matrix:
+I further evaluated the model on 577 image samples set aside for testing. The model achieved an accuracy of 97%, for which you can see the below confusion matrix:
 
 <img src="https://github.com/pranman11/image_classfication_glomeruli/assets/17320182/634d6bcc-43ac-40c9-ade7-e84fb0a9a627" width="500" height="400"/>
 
-### VGG-16
+##### Future work:
+As we have achieved a fairly decent accuracy above, tweaking the model by adding layers, using higher resolution images (I have used 256x256), trying out different preprocessing methods, or changing hyperparameters might help us improve the accuracy. However, higher accuracy could also be possibly attained by using already existing large pre-trained models like VGG16 or ResNet, which is what I decided to explore further.
 
+### Large pretrained models
+I first decided to train the VGG-16 model by normalizing the training data using the Normalization layer above, but as expected that did not not perform well (not documented here) with the VGG-16 model as it's weights have been computed using ImageNet data. Therefore, I use the `preprocess_input` methods mentioned above to preprocess images.
 
-### ResNet-50
+#### VGG-16
+I removed the top layer of the VGG-16 model and falttened the output of the last convolutional layer. Further I added 3 fully connected layers as shown [here](https://towardsdatascience.com/transfer-learning-with-vgg16-and-keras-50ea161580b4). After training for 25 epochs, the model performed as below:
 
+<img src="https://github.com/pranman11/image_classfication_glomeruli/assets/17320182/78a9ec6d-9029-432f-a8e8-3fde03328be3" width="400" height="300"/>
+<img src="https://github.com/pranman11/image_classfication_glomeruli/assets/17320182/b34e81fc-6478-44b2-b084-9ee892830f7d" width="400" height="300"/>
+
+I further evaluated the model on 577 image samples set aside for testing. The model achieved an accuracy of 98%, for which you can see the below confusion matrix:
+
+<img src="https://github.com/pranman11/image_classfication_glomeruli/assets/17320182/b3a32844-4bf9-468a-b1a3-f725d2c6909b" width="500" height="400"/>
+
+#### ResNet-50
+I used the same approach as used for VGG-16 to train this model. After training for 25 epochs, the model performed as below:
+
+<img src="https://github.com/pranman11/image_classfication_glomeruli/assets/17320182/bee3c7ee-6652-4a98-b007-02c9a9ebc916" width="400" height="300"/>
+<img src="https://github.com/pranman11/image_classfication_glomeruli/assets/17320182/44e43eca-39a8-4ee3-8317-1730e60917a9" width="400" height="300"/>
+
+I further evaluated the model on 577 image samples set aside for testing. The model achieved an accuracy of 98%, for which you can see the below confusion matrix:
+
+<img src="https://github.com/pranman11/image_classfication_glomeruli/assets/17320182/834dc53f-2fe9-415c-91bc-7d61ca1fc44c" width="500" height="400"/>
 
 ## Performance Metrics
 
