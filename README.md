@@ -73,6 +73,8 @@ I decided to first train and test on a simple single layer neural network with a
 <img src="https://github.com/pranman11/image_classfication_glomeruli/assets/17320182/a2c77d35-bd1c-4369-a8f5-e6179d144228" width="400" height="300"/>
 
 #### Simple CNN Classifier
+The trained model can be downloaded from [here](https://drive.google.com/file/d/1iG-HhaZL1bl92Vjlrn0ozCs-sruuggOg/view?usp=drive_link) (42.4 MB)
+
 As the performance of the logistic regression model was not upto the mark, I decided to use Convolutional layers in the neural network model. I chose a general image classifier model provided in the Tensorflow documentaion for [image classification](https://www.tensorflow.org/tutorials/images/classification) to begin with. The model consisted of 3 convolutional layers, each followed by a Max Pooling layer and 2 fully connected layers at the end. After training for 25 epochs, the model converged as follows:
 
 <img src="https://github.com/pranman11/image_classfication_glomeruli/assets/17320182/b51f2c88-8819-4c6b-bc31-dca9a4243124" width="400" height="300"/>
@@ -89,7 +91,9 @@ As we have achieved a fairly decent accuracy above, tweaking the model by adding
 I first decided to train the VGG-16 model by normalizing the training data using the Normalization layer above, but as expected that did not not perform well (not documented here) with the VGG-16 model as it's weights have been computed using ImageNet data. Therefore, I use the `preprocess_input` methods mentioned above to preprocess images.
 
 #### VGG-16
-I removed the top layer of the VGG-16 model and falttened the output of the last convolutional layer. Further I added 3 fully connected layers as shown [here](https://towardsdatascience.com/transfer-learning-with-vgg16-and-keras-50ea161580b4). After training for 25 epochs, the model performed as below:
+The trained model can be downloaded from [here](https://drive.google.com/file/d/1-2Q9IMdTt2wPdm3fdZPCCqUqkD6ubQtA/view?usp=drive_link) (1.25 GB)
+
+I removed the top layer of the VGG-16 model and falttened the output of the last convolutional layer. Further I added 3 fully connected layers as shown [here](https://towardsdatascience.com/transfer-learning-with-vgg16-and-keras-50ea161580b4). I have also added a Dropout layer to minimize overfitting. After training for 25 epochs, the model performed as below:
 
 <img src="https://github.com/pranman11/image_classfication_glomeruli/assets/17320182/78a9ec6d-9029-432f-a8e8-3fde03328be3" width="400" height="300"/>
 <img src="https://github.com/pranman11/image_classfication_glomeruli/assets/17320182/b34e81fc-6478-44b2-b084-9ee892830f7d" width="400" height="300"/>
@@ -109,6 +113,11 @@ I further evaluated the model on 577 image samples set aside for testing. The mo
 <img src="https://github.com/pranman11/image_classfication_glomeruli/assets/17320182/834dc53f-2fe9-415c-91bc-7d61ca1fc44c" width="500" height="400"/>
 
 ## Performance Metrics
+I have chosen the Binary Cross Entropy loss function to train the model that uses a single probability (0 to 1) for each image. I make use of the graph of loss vs. epoch and accuracy vs. epoch to observe whether there model overfits.
+
+Since the last layer uses a sigmoid activation, I use threshold value of 0.5 to get the predicted values and compute the confusion matrix to visualize how the model performs on the dataset set aside for testing.
+
+## Evaluation file
 
 
 
