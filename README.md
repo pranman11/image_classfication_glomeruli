@@ -60,9 +60,34 @@ For preprocessing images for larger pre-trained networks I made use of already e
 ### Data Augmentation
 After training the Simple CNN model with the above methods, the graphs comparing the training and validation accuracy and loss showed that the model performed poorly on validation dataset (validation loss increased and accuracy decreased with every epoch). This was a case of overfitting. To solve this, I decided to employ data augmention on the training dataset. I have currently only experimented with a random horizontal flip and a random rotation of 10% * 2pi which helped resolve the overfitting.
 
+Images after preprocessing:
+![image](https://github.com/pranman11/image_classfication_glomeruli/assets/17320182/98502e10-ab5f-44c2-939f-b553fed9933c)
+
+
 ## Models
 
 ### Logistic Regression
+I decided to first train and test on a simple single layer neural network with a sigmoid activation, which is basically a Logisitc Regression model. With 20 epochs of training, the model achieved an accuracy of 87% on the test dataset. From the loss graph we can observe that the model did not require many epochs to converge.
+![image](https://github.com/pranman11/image_classfication_glomeruli/assets/17320182/2c56932d-a946-42f0-abe7-6268b96b18bc)
+
+![image](https://github.com/pranman11/image_classfication_glomeruli/assets/17320182/a2c77d35-bd1c-4369-a8f5-e6179d144228)
+
+### Simple CNN Classifier
+As the performance of the logistic regression model was not upto the mark, I decided to use Convolutional layers in the neural network model. I chose a general image classifier model provided in the Tensorflow documentaion for [image classification](https://www.tensorflow.org/tutorials/images/classification) to begin with. The model consisted of 3 convolutional layers, each followed by a Max Pooling layer and 2 fully connected layers at the end.
+![image](https://github.com/pranman11/image_classfication_glomeruli/assets/17320182/b51f2c88-8819-4c6b-bc31-dca9a4243124)
+
+![image](https://github.com/pranman11/image_classfication_glomeruli/assets/17320182/81f853b6-9c22-4cf9-9dd9-5789b6d9c940)
+
+I further evaluated the model on 577 image samples set aside for testing and also computed the below confusion matrix:
+![image](https://github.com/pranman11/image_classfication_glomeruli/assets/17320182/634d6bcc-43ac-40c9-ade7-e84fb0a9a627)
+
+### VGG-16
+
+
+### ResNet-50
+
+
+## Performance Metrics
 
 
 
