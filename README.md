@@ -68,9 +68,8 @@ Images after preprocessing:
 
 ### Logistic Regression
 I decided to first train and test on a simple single layer neural network with a sigmoid activation, which is basically a Logisitc Regression model. With 20 epochs of training, the model achieved an accuracy of 87% on the test dataset. From the loss graph we can observe that the model did not require many epochs to converge.
-![<img src="https://github.com/pranman11/image_classfication_glomeruli/assets/17320182/2c56932d-a946-42f0-abe7-6268b96b18bc" width="250"/>](https://github.com/pranman11/image_classfication_glomeruli/assets/17320182/2c56932d-a946-42f0-abe7-6268b96b18bc =300x200)
-
-![image](https://github.com/pranman11/image_classfication_glomeruli/assets/17320182/a2c77d35-bd1c-4369-a8f5-e6179d144228 =300x200)
+<img src="https://github.com/pranman11/image_classfication_glomeruli/assets/17320182/2c56932d-a946-42f0-abe7-6268b96b18bc" width="400" height="300"/>
+<img src="https://github.com/pranman11/image_classfication_glomeruli/assets/17320182/a2c77d35-bd1c-4369-a8f5-e6179d144228" width="400" height="300"/>
 
 ### Simple CNN Classifier
 As the performance of the logistic regression model was not upto the mark, I decided to use Convolutional layers in the neural network model. I chose a general image classifier model provided in the Tensorflow documentaion for [image classification](https://www.tensorflow.org/tutorials/images/classification) to begin with. The model consisted of 3 convolutional layers, each followed by a Max Pooling layer and 2 fully connected layers at the end.
