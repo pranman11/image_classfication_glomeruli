@@ -80,7 +80,7 @@ As the performance of the logistic regression model was not upto the mark, I dec
 
 I further evaluated the model on 577 image samples set aside for testing and also computed the below confusion matrix:
 
-<img src="https://github.com/pranman11/image_classfication_glomeruli/assets/17320182/634d6bcc-43ac-40c9-ade7-e84fb0a9a627" width="600" height="600"/>
+<img src="https://github.com/pranman11/image_classfication_glomeruli/assets/17320182/634d6bcc-43ac-40c9-ade7-e84fb0a9a627" width="500" height="400"/>
 
 ### VGG-16
 
