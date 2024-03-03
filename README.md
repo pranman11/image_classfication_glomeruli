@@ -148,7 +148,7 @@ The models can be trained using Google Colab or using Jupyter Lab on your local 
 pip install -r requirements.txt
 ```
 
-You may create a virtual environment and use that while running the notebook. This is shown (here)[https://www.geeksforgeeks.org/using-jupyter-notebook-in-virtual-environment/].
+You may create a virtual environment and use that while running the notebook. This is shown [here](https://www.geeksforgeeks.org/using-jupyter-notebook-in-virtual-environment/).
 
 After installing the requirements, the data needs to be split into train, validation and test splits using `create_data_split.py` as mentioned above. Further, the data needs to be white padded as well using `create_white_padded_data.py`.
 
