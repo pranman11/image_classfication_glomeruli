@@ -125,7 +125,7 @@ Before evalution the data needs to be white padded which can be done using the s
 python scripts\create_white_padded_data.py
 ```
 
-The evaluation.py takes a model and test data path as input and create the evaluation.csv file (alongwith the accuracy and confusion matrix). The <test_data_path> value will have the file created after the running the `create_white_padded_data.py` script. The evaluation.py file can be run as follows:
+The evaluation.py takes a model - downloaded from [VGG-16](https://github.com/pranman11/image_classfication_glomeruli?tab=readme-ov-file#vgg-16) or [SimpleCNN](https://github.com/pranman11/image_classfication_glomeruli?tab=readme-ov-file#simple-cnn-classifier) and test data path as input and create the evaluation.csv file (alongwith the accuracy and confusion matrix). The <test_data_path> value will have the file created after the running the `create_white_padded_data.py` script. The evaluation.py file can be run as follows:
 
 ```
 python evaluation.py <test_data_path> <model_path>
