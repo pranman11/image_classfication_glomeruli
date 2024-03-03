@@ -113,12 +113,59 @@ I further evaluated the model on 577 image samples set aside for testing. The mo
 <img src="https://github.com/pranman11/image_classfication_glomeruli/assets/17320182/834dc53f-2fe9-415c-91bc-7d61ca1fc44c" width="500" height="400"/>
 
 ## Performance Metrics
-I have chosen the Binary Cross Entropy loss function to train the model that uses a single probability (0 to 1) for each image. I make use of the graph of loss vs. epoch and accuracy vs. epoch to observe whether there model overfits.
+I have chosen the Binary Cross Entropy loss function to train the model that uses a single probability value (0 to 1) for each image. I make use of the graph of loss vs. epoch and accuracy vs. epoch to observe whether there model overfits.
 
 Since the last layer uses a sigmoid activation, I use threshold value of 0.5 to get the predicted values and compute the confusion matrix to visualize how the model performs on the dataset set aside for testing.
 
 ## Evaluation file
 
+Before evalution the data needs to be white padded which can be done using the script mentioned above. You will have to edit the code to update the `split_data_dir` as the path of the data directory that contains the test data (with subfolders of the two classes). The white padded data folder will be created with the name `split_data_white_padded` (provided it is not changed. The script is run as follows:
 
+```
+python scripts\create_white_padded_data.py
+```
 
+The evaluation.py takes a model and test data path as input and create the evaluation.csv file (alongwith the accuracy and confusion matrix). The <test_data_path> value will have the file created after the running the `create_white_padded_data.py` script. The evaluation.py file can be run as follows:
 
+```
+python evaluation.py <test_data_path> <model_path>
+```
+
+For example:
+```
+python evaluation.py split_white_padded_data\test vgg16_glomeruli_classifier
+```
+
+The evaluation.csv file created contains the file name and the corresponding predicted class as columns.
+
+Note: Please do not change the name of the model file name as it uses the model name to preprocess images accordingly.
+
+## Training the models:
+
+The models can be trained using Google Colab or using Jupyter Lab on your local machine. In case you're using Jupyer Lab, the requirements need to be installed as follows:
+
+```
+pip install -r requirements.txt
+```
+
+After installing the requirements, the data needs to be split into train, validation and test splits using `create_data_split.py` as mentioned above. Further, the data needs to be white padded as well using `create_white_padded_data.py`.
+
+The DataLoader class has been written in such a way that it checks whether the code is being run on Google Colab or locally. The DataLoader takes the root directory path as input and is used as follows:
+
+```
+data_loader = DataLoader('split_data_white_padded')
+
+train_data_path = '/train'
+test_data_path = '/test'
+validation_data_path = '/validation'
+
+IMAGE_SIZE = 224
+BATCH_SIZE = 32
+SHUFFLE = True
+
+train_dataset = data_loader.load_image_data(train_data_path, IMAGE_SIZE, BATCH_SIZE, SHUFFLE)
+validation_dataset = data_loader.load_image_data(validation_data_path, IMAGE_SIZE, BATCH_SIZE, not SHUFFLE)
+test_dataset = data_loader.load_image_data(test_data_path, IMAGE_SIZE, BATCH_SIZE, not SHUFFLE)
+```
+
+All cells can be run after this without modification.
