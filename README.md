@@ -119,7 +119,7 @@ Since the last layer uses a sigmoid activation, I use threshold value of 0.5 to 
 
 ## Evaluation file
 
-Before evalution the data needs to be white padded which can be done using the script mentioned above. You will have to edit the code to update the `split_data_dir` as the path of the data directory that contains the test data (with subfolders of the two classes). The white padded data folder will be created with the name `split_data_white_padded` (provided it is not changed. The script is run as follows:
+Before evalution the data needs to be white padded which can be done using the script mentioned above. You will have to edit the code to update the `split_data_dir` as the path of the data directory that contains the test data (with subfolders of the two classes).  The white padded data folder will be created with the name `split_data_white_padded` (provided it is not changed. The script is run as follows:
 
 ```
 python scripts\create_white_padded_data.py
@@ -142,15 +142,17 @@ Note: Please do not change the name of the model file name as it uses the model 
 
 ## Training the models:
 
-The models can be trained using Google Colab or using Jupyter Lab on your local machine. In case you're using Jupyer Lab, the requirements need to be installed as follows:
+The models can be trained using Google Colab or using Jupyter Lab on your local machine. In case of Google Colab, the `data` folder containing image samples needs to be uploaded to Google Drive (of the same user as Colab), in the same directory where the notebook is located. In case you're using Jupyer Lab, the same file structure needs to be maintained and the the requirements need to be installed as follows:
 
 ```
 pip install -r requirements.txt
 ```
 
+You may create a virtual environment and use that while running the notebook. This is shown (here)[https://www.geeksforgeeks.org/using-jupyter-notebook-in-virtual-environment/].
+
 After installing the requirements, the data needs to be split into train, validation and test splits using `create_data_split.py` as mentioned above. Further, the data needs to be white padded as well using `create_white_padded_data.py`.
 
-The DataLoader class has been written in such a way that it checks whether the code is being run on Google Colab or locally. The DataLoader takes the root directory path as input and is used as follows:
+The DataLoader class has been written in such a way that it checks whether the code is being run on Google Colab or locally. The DataLoader mounts the root directory of your Google Drive. It takes the data directory path as input (which in the below case is the present in the root directory itself) and is used as follows:
 
 ```
 data_loader = DataLoader('split_data_white_padded')
