@@ -8,8 +8,10 @@ Below is a summary of the trained models and their accuracy on a small test data
 |          Model        | Test Set Accuracy |
 |-----------------------|-------------------|
 |   Logistic Regression | 88%               |
-|   Simple CNN model    | 96%               |
-|   Frozen VGG16 model  | 98%               |
+|   Simple CNN          | 97%               |
+|   Frozen VGG-16       | 98%               |
+|   Frozen ResNet-50    | 98%               |
+
 
 ## Dataset
 
@@ -171,3 +173,5 @@ test_dataset = data_loader.load_image_data(test_data_path, IMAGE_SIZE, BATCH_SIZ
 ```
 
 All cells can be run after this without modification.
+
+For this project, the models were trained using A100/V100 GPU using Colab Pro.
